@@ -99,6 +99,11 @@ Para que a extensão funcione corretamente, é necessário que o backend esteja 
 ## 📌 Observações
 
 * A cidade favorita é armazenada no **localStorage**, mantendo sua preferência entre sessões.
+* Se for usar o render para executar o backend repare que no modo gratuito existe o aviso:
+* > ⚠️ **Atenção:** Sua instância gratuita no Render pode hibernar após períodos de inatividade.  
+* > O **primeiro acesso** após hibernação pode demorar **50 segundos ou mais** até o backend responder.
+* **Ou seja,** se a instancia hibernar vai demorar algum tempo até carregar a aplicação e receber os dados de previsão.
+
 
 ---
 
