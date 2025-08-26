@@ -12,8 +12,11 @@ O backend da aplicação está hospedado no **Render** e os arquivos do backend 
 clima-extension/
 │
 ├─ backend/                # Arquivos do backend (Node.js/Express)
-│   ├─ index.js
+│   ├─ server.js
 │   └─ package.json
+│
+├─ icons/
+│    └─ icon16.png
 │
 ├─ popup.html              # Interface da extensão
 ├─ popup.js                # Lógica do frontend
@@ -64,7 +67,7 @@ Para que a extensão funcione corretamente, é necessário que o backend esteja 
 1. Acesse [Render](https://render.com/) e faça login.
 2. Clique em **New Web Service**.
 3. Escolha o repositório da pasta `backend/` do projeto.
-4. Configure Node.js e a porta padrão (geralmente 10000 ou conforme o `index.js`).
+4. Configure Node.js e a porta padrão (geralmente 5000 ou conforme o `server.js`).
 5. Clique em **Deploy**.
 6. Após o deploy, copie a URL do serviço e atualize `backendUrl` em `popup.js` com esta URL.
 
@@ -84,6 +87,35 @@ Para que a extensão funcione corretamente, é necessário que o backend esteja 
 ## 📌 Observações
 
 * A cidade favorita é armazenada no **localStorage**, mantendo sua preferência entre sessões.
+
+---
+
+## 🔮 Melhorias Futuras
+
+**Suporte a múltiplas cidades favoritas**
+Permitir que o usuário marque mais de uma cidade como favorita e alternar rapidamente entre elas.
+
+**Atualização automática da previsão**
+Implementar refresh automático a cada X minutos para manter os dados sempre atualizados.
+
+**Notificações**
+Alertas de clima severo ou mudança de temperatura, via notificações do navegador.
+
+**Melhorias na interface**
+* Adicionar temas (claro/escuro) para o popup.
+* Animações sutis nos cards de previsão.
+* Gráficos de temperatura, umidade e chance de chuva.
+* Offline Mode / Cache Avançado
+* Armazenar dados da previsão em cache para exibir quando o usuário estiver offline.
+* Melhorar a estratégia de cache para reduzir chamadas ao backend.
+* Internacionalização (i18n)
+* Suporte a múltiplos idiomas além do português.
+
+**Integração com APIs adicionais**
+Como qualidade do ar, índice UV ou alertas meteorológicos do governo.
+
+**Testes Automatizados**
+Criar testes unitários e de integração para garantir a estabilidade do app e da extensão.
 
 ---
 
