@@ -170,12 +170,18 @@ function renderCards(diasOrdenados, diasMap) {
 
       // Tooltip
       horarioDiv.addEventListener("mousemove", e => {
-        tooltip.innerHTML = `Sensação: ${p.feels_like}°C<br>Umidade: ${p.humidity}%<br>Chuva: ${p.pop}%`;
+       const rect = horarioDiv.getBoundingClientRect();
+  tooltip.innerHTML = `Sensação: ${p.feels_like}°C<br>Umidade: ${p.humidity}%<br>Chuva: ${p.pop}%`;
   tooltip.style.opacity = 1;
-  let left = e.pageX + 12; // usar pageX/Y em vez de clientX/Y
-  let top = e.pageY + 12;
+
+  // Posição baseada no cursor relativo ao viewport
+  let left = e.clientX + 12;
+  let top = e.clientY + 12;
+
+  // Ajusta para não sair da tela do popup
   if (left + tooltip.offsetWidth > window.innerWidth) left = window.innerWidth - tooltip.offsetWidth - 4;
   if (top + tooltip.offsetHeight > window.innerHeight) top = window.innerHeight - tooltip.offsetHeight - 4;
+
   tooltip.style.left = left + "px";
   tooltip.style.top = top + "px";
       });
