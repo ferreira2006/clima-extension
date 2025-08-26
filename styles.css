@@ -86,7 +86,7 @@ select:focus, button:hover {
 
 /* ======================= Tooltip ======================= */
 .tooltip {
-   position: fixed;
+  position: absolute; /* relativo ao container de cards */
   background: rgba(0,0,0,0.85);
   color: #fff;
   padding: 6px 10px;
