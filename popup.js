@@ -139,14 +139,6 @@ function renderCards(diasOrdenados, diasMap) {
   const cardsDiv = document.getElementById("cards");
   cardsDiv.innerHTML = "";
 
-  // Tooltip agora é filho de #cards
-  let tooltip = cardsDiv.querySelector(".tooltip");
-  if(!tooltip){
-    tooltip = document.createElement("div");
-    tooltip.className="tooltip";
-    cardsDiv.appendChild(tooltip);
-  }
-
   diasOrdenados.slice(0,4).forEach(dia => {
     const dataDia = diasMap.get(dia);
     const card = document.createElement("div");
@@ -169,24 +161,21 @@ function renderCards(diasOrdenados, diasMap) {
         <span class="temp">${p.temp}°C</span>
       `;
 
+      // Tooltip dentro do horário
+      const tooltip = document.createElement("div");
+      tooltip.className = "tooltip";
+      tooltip.innerHTML = `Sensação: ${p.feels_like}°C<br>Umidade: ${p.humidity}%<br>Chuva: ${p.pop}%`;
+      horarioDiv.appendChild(tooltip);
+
       horarioDiv.addEventListener("mousemove", e => {
-        tooltip.innerHTML = `Sensação: ${p.feels_like}°C<br>Umidade: ${p.humidity}%<br>Chuva: ${p.pop}%`;
         tooltip.style.opacity = 1;
-
-        // Posição relativa ao container rolável
-        const rect = cardsDiv.getBoundingClientRect();
-        let left = e.clientX - rect.left + 12;
-        let top = e.clientY - rect.top + 12;
-
-        // Limitar tooltip ao tamanho de #cards
-        if (left + tooltip.offsetWidth > cardsDiv.clientWidth) left = cardsDiv.clientWidth - tooltip.offsetWidth - 4;
-        if (top + tooltip.offsetHeight > cardsDiv.clientHeight) top = cardsDiv.clientHeight - tooltip.offsetHeight - 4;
-
-        tooltip.style.left = left + "px";
-        tooltip.style.top = top + "px";
+        tooltip.style.left = e.offsetX + 12 + "px";
+        tooltip.style.top = e.offsetY + 12 + "px";
       });
 
-      horarioDiv.addEventListener("mouseleave", () => tooltip.style.opacity = 0);
+      horarioDiv.addEventListener("mouseleave", () => {
+        tooltip.style.opacity = 0;
+      });
 
       card.appendChild(horarioDiv);
     });
