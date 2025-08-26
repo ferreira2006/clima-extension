@@ -62,8 +62,9 @@ select:focus, button:hover {
 
 /* ======================= Horários ======================= */
 .horario {
+  position: relative; /* para que o tooltip seja relativo ao horário */
   display: grid;
-  grid-template-columns: 40px 50px 1fr 40px; /* hora / "Amanhã" / descrição / ícone */
+  grid-template-columns: 40px 50px 1fr 40px;
   align-items: center;
   padding: 6px 8px;
   border-radius: 8px;
@@ -85,8 +86,10 @@ select:focus, button:hover {
 }
 
 /* ======================= Tooltip ======================= */
-.tooltip {
-  position: absolute; /* relativo ao container de cards */
+.horario .tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
   background: rgba(0,0,0,0.85);
   color: #fff;
   padding: 6px 10px;
@@ -95,7 +98,8 @@ select:focus, button:hover {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.2s, transform 0.1s;
-  z-index: 9999;
+  z-index: 999;
+  white-space: nowrap;
 }
 
 /* ======================= Checkbox Favorita ======================= */
