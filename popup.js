@@ -138,16 +138,16 @@ function prepararCards(diasMap) {
 function renderCards(diasOrdenados, diasMap) {
   const cardsDiv = document.getElementById("cards");
   cardsDiv.innerHTML = "";
-  cardsDiv.style.position = "relative"; // importante para tooltip absoluto
 
+  // Tooltip global, filho do body
   let tooltip = document.querySelector(".tooltip");
   if (!tooltip) {
     tooltip = document.createElement("div");
     tooltip.className = "tooltip";
-    cardsDiv.appendChild(tooltip);
+    document.body.appendChild(tooltip);
   }
 
-  diasOrdenados.slice(0,4).forEach(dia => {
+  diasOrdenados.slice(0, 4).forEach(dia => {
     const dataDia = diasMap.get(dia);
     const card = document.createElement("div");
     card.className = "card";
@@ -169,23 +169,25 @@ function renderCards(diasOrdenados, diasMap) {
         <span class="temp">${p.temp}°C</span>
       `;
 
-      // Tooltip ajustado para scroll
+      // Tooltip segue o cursor
       horarioDiv.addEventListener("mousemove", e => {
         tooltip.innerHTML = `Sensação: ${p.feels_like}°C<br>Umidade: ${p.humidity}%<br>Chuva: ${p.pop}%`;
         tooltip.style.opacity = 1;
 
-        const rect = cardsDiv.getBoundingClientRect();
-        let left = e.clientX - rect.left + cardsDiv.scrollLeft + 12;
-        let top = e.clientY - rect.top + cardsDiv.scrollTop + 12;
+        let left = e.clientX + 12;
+        let top = e.clientY + 12;
 
-        if (left + tooltip.offsetWidth > cardsDiv.scrollWidth) left = cardsDiv.scrollWidth - tooltip.offsetWidth - 4;
-        if (top + tooltip.offsetHeight > cardsDiv.scrollHeight) top = cardsDiv.scrollHeight - tooltip.offsetHeight - 4;
+        // Evita ultrapassar limites da tela
+        if (left + tooltip.offsetWidth > window.innerWidth) left = window.innerWidth - tooltip.offsetWidth - 4;
+        if (top + tooltip.offsetHeight > window.innerHeight) top = window.innerHeight - tooltip.offsetHeight - 4;
 
         tooltip.style.left = left + "px";
         tooltip.style.top = top + "px";
       });
 
-      horarioDiv.addEventListener("mouseleave", () => tooltip.style.opacity = 0);
+      horarioDiv.addEventListener("mouseleave", () => {
+        tooltip.style.opacity = 0;
+      });
 
       card.appendChild(horarioDiv);
     });
