@@ -92,16 +92,16 @@ Para que a extensão funcione corretamente, é necessário que o backend esteja 
 
 ## 🔮 Melhorias Futuras
 
-**Suporte a múltiplas cidades favoritas**
+**Suporte a múltiplas cidades favoritas: **
 Permitir que o usuário marque mais de uma cidade como favorita e alternar rapidamente entre elas.
 
-**Atualização automática da previsão**
+**Atualização automática da previsão: **
 Implementar refresh automático a cada X minutos para manter os dados sempre atualizados.
 
-**Notificações**
+**Notificações: **
 Alertas de clima severo ou mudança de temperatura, via notificações do navegador.
 
-**Melhorias na interface**
+**Melhorias na interface: **
 * Adicionar temas (claro/escuro) para o popup.
 * Animações sutis nos cards de previsão.
 * Gráficos de temperatura, umidade e chance de chuva.
@@ -111,10 +111,10 @@ Alertas de clima severo ou mudança de temperatura, via notificações do navega
 * Internacionalização (i18n)
 * Suporte a múltiplos idiomas além do português.
 
-**Integração com APIs adicionais**
+**Integração com APIs adicionais: **
 Como qualidade do ar, índice UV ou alertas meteorológicos do governo.
 
-**Testes Automatizados**
+**Testes Automatizados: **
 Criar testes unitários e de integração para garantir a estabilidade do app e da extensão.
 
 ---
