@@ -114,7 +114,7 @@ Para que a extensão funcione corretamente, é necessário que o backend esteja 
 **Integração com APIs adicionais:**
 * Como qualidade do ar, índice UV ou alertas meteorológicos do governo.
 
-**Testes Automatizados: **
+**Testes Automatizados:**
 * Criar testes unitários e de integração para garantir a estabilidade do app e da extensão.
 
 ---
