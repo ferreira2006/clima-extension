@@ -138,12 +138,13 @@ function prepararCards(diasMap) {
 function renderCards(diasOrdenados, diasMap) {
   const cardsDiv = document.getElementById("cards");
   cardsDiv.innerHTML = "";
+  cardsDiv.style.position = "relative"; // importante para tooltip absoluto
 
   let tooltip = document.querySelector(".tooltip");
-  if(!tooltip){
+  if (!tooltip) {
     tooltip = document.createElement("div");
-    tooltip.className="tooltip";
-    document.body.appendChild(tooltip);
+    tooltip.className = "tooltip";
+    cardsDiv.appendChild(tooltip);
   }
 
   diasOrdenados.slice(0,4).forEach(dia => {
@@ -168,26 +169,23 @@ function renderCards(diasOrdenados, diasMap) {
         <span class="temp">${p.temp}°C</span>
       `;
 
-      // Tooltip
+      // Tooltip ajustado para scroll
       horarioDiv.addEventListener("mousemove", e => {
         tooltip.innerHTML = `Sensação: ${p.feels_like}°C<br>Umidade: ${p.humidity}%<br>Chuva: ${p.pop}%`;
         tooltip.style.opacity = 1;
 
-        // posição fixa baseada no cursor
-        let left = e.clientX + 12;
-        let top = e.clientY + 12;
+        const rect = cardsDiv.getBoundingClientRect();
+        let left = e.clientX - rect.left + cardsDiv.scrollLeft + 12;
+        let top = e.clientY - rect.top + cardsDiv.scrollTop + 12;
 
-        // evita que o tooltip saia da tela
-        if (left + tooltip.offsetWidth > window.innerWidth) left = window.innerWidth - tooltip.offsetWidth - 4;
-        if (top + tooltip.offsetHeight > window.innerHeight) top = window.innerHeight - tooltip.offsetHeight - 4;
+        if (left + tooltip.offsetWidth > cardsDiv.scrollWidth) left = cardsDiv.scrollWidth - tooltip.offsetWidth - 4;
+        if (top + tooltip.offsetHeight > cardsDiv.scrollHeight) top = cardsDiv.scrollHeight - tooltip.offsetHeight - 4;
 
         tooltip.style.left = left + "px";
         tooltip.style.top = top + "px";
       });
 
-      horarioDiv.addEventListener("mouseleave", () => {
-        tooltip.style.opacity = 0;
-      });
+      horarioDiv.addEventListener("mouseleave", () => tooltip.style.opacity = 0);
 
       card.appendChild(horarioDiv);
     });
