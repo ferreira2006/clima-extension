@@ -139,12 +139,12 @@ function renderCards(diasOrdenados, diasMap) {
   const cardsDiv = document.getElementById("cards");
   cardsDiv.innerHTML = "";
 
-  // Tooltip é filho do body do popup
-  let tooltip = document.querySelector(".tooltip");
+  // Tooltip agora é filho de #cards
+  let tooltip = cardsDiv.querySelector(".tooltip");
   if(!tooltip){
     tooltip = document.createElement("div");
     tooltip.className="tooltip";
-    document.body.appendChild(tooltip);
+    cardsDiv.appendChild(tooltip);
   }
 
   diasOrdenados.slice(0,4).forEach(dia => {
@@ -169,20 +169,18 @@ function renderCards(diasOrdenados, diasMap) {
         <span class="temp">${p.temp}°C</span>
       `;
 
-      // Tooltip ajustado para popup
       horarioDiv.addEventListener("mousemove", e => {
         tooltip.innerHTML = `Sensação: ${p.feels_like}°C<br>Umidade: ${p.humidity}%<br>Chuva: ${p.pop}%`;
         tooltip.style.opacity = 1;
 
-        // Posição absoluta na página do popup
-        let left = e.pageX + 12;
-        let top = e.pageY + 12;
+        // Posição relativa ao container rolável
+        const rect = cardsDiv.getBoundingClientRect();
+        let left = e.clientX - rect.left + 12;
+        let top = e.clientY - rect.top + 12;
 
-        // Limitar tooltip à área visível do popup
-        const popupWidth = document.body.clientWidth;
-        const popupHeight = document.body.clientHeight;
-        if (left + tooltip.offsetWidth > popupWidth) left = popupWidth - tooltip.offsetWidth - 4;
-        if (top + tooltip.offsetHeight > popupHeight) top = popupHeight - tooltip.offsetHeight - 4;
+        // Limitar tooltip ao tamanho de #cards
+        if (left + tooltip.offsetWidth > cardsDiv.clientWidth) left = cardsDiv.clientWidth - tooltip.offsetWidth - 4;
+        if (top + tooltip.offsetHeight > cardsDiv.clientHeight) top = cardsDiv.clientHeight - tooltip.offsetHeight - 4;
 
         tooltip.style.left = left + "px";
         tooltip.style.top = top + "px";
@@ -196,6 +194,7 @@ function renderCards(diasOrdenados, diasMap) {
     cardsDiv.appendChild(card);
   });
 }
+
 
 
 // ======================= IBGE: ESTADOS E MUNICÍPIOS =======================
