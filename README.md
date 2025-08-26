@@ -27,6 +27,18 @@ clima-extension/
 
 ---
 
+## 🖼️ Preview
+
+### Popup da Extensão
+![Popup](./prints/popup.png)  
+*Interface principal da extensão mostrando os selects de Estado e Município, botão de busca e checkbox de cidade favorita.*
+
+### Cards do Clima
+![Cards](./prints/cards.png)  
+*Cards detalhados com horários, descrição do clima, temperatura, ícone e tooltip com informações extras.*
+
+---
+
 ## ⚡ Funcionalidades
 
 * 🌎 Seleção de **estado** e **município** com dados do IBGE.
