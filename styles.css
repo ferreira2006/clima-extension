@@ -1,0 +1,133 @@
+/* ======================= Global ======================= */
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  width: 300px;
+  padding: 12px;
+  background: linear-gradient(135deg, #e0f7fa, #f0f0f0);
+  color: #212121;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ======================= Selectors ======================= */
+.selectors {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+select, button {
+  flex: 1;
+  padding: 6px 8px;
+  font-size: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+select:focus, button:hover {
+  border-color: #00acc1;
+  box-shadow: 0 0 6px rgba(0,172,193,0.4);
+  outline: none;
+}
+
+/* ======================= Cards ======================= */
+.card {
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ffffff, #e0f7fa);
+  padding: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+.card h2 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* ======================= Horários ======================= */
+.horario {
+  display: grid;
+  grid-template-columns: 40px 50px 1fr 40px; /* hora / "Amanhã" / descrição / ícone */
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 8px;
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #212121;
+  gap: 6px;
+  transition: transform 0.15s;
+}
+
+.horario img {
+  width: 32px;
+  height: 32px;
+}
+
+.horario:hover {
+  transform: scale(1.03);
+}
+
+/* ======================= Tooltip ======================= */
+.tooltip {
+  position: absolute;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.1s;
+  z-index: 9999;
+}
+
+/* ======================= Checkbox Favorita ======================= */
+.favorite-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+.favorite-container input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.form-group {
+  display: flex;
+  gap: 12px; /* aumentei de 6px para 12px */
+  margin-bottom: 12px;
+}
+
+/* ======================= Botão Buscar ======================= */
+#buscarClimaBtn {
+  background: #00acc1;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+#buscarClimaBtn:disabled {
+  background: #b2ebf2;
+  cursor: not-allowed;
+}

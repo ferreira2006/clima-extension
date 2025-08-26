@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Previsão do Tempo",
+  "version": "1.0",
+  "description": "Veja a previsão do tempo rapidamente.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon16.png",
+      "128": "icons/icon16.png"
+    }
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://weather-backend-hh3w.onrender.com/*",
+    "https://servicodados.ibge.gov.br/*"
+  ]
+}
