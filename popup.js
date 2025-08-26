@@ -146,7 +146,7 @@ function renderCards(diasOrdenados, diasMap) {
     document.body.appendChild(tooltip);
   }
 
-  diasOrdenados.forEach(dia => {
+  diasOrdenados.slice(0,4).forEach(dia => {
     const dataDia = diasMap.get(dia);
     const card = document.createElement("div");
     card.className = "card";
@@ -170,22 +170,24 @@ function renderCards(diasOrdenados, diasMap) {
 
       // Tooltip
       horarioDiv.addEventListener("mousemove", e => {
-       const rect = horarioDiv.getBoundingClientRect();
-  tooltip.innerHTML = `Sensação: ${p.feels_like}°C<br>Umidade: ${p.humidity}%<br>Chuva: ${p.pop}%`;
-  tooltip.style.opacity = 1;
+        tooltip.innerHTML = `Sensação: ${p.feels_like}°C<br>Umidade: ${p.humidity}%<br>Chuva: ${p.pop}%`;
+        tooltip.style.opacity = 1;
 
-  // Posição baseada no cursor relativo ao viewport
-  let left = e.clientX + 12;
-  let top = e.clientY + 12;
+        // posição fixa baseada no cursor
+        let left = e.clientX + 12;
+        let top = e.clientY + 12;
 
-  // Ajusta para não sair da tela do popup
-  if (left + tooltip.offsetWidth > window.innerWidth) left = window.innerWidth - tooltip.offsetWidth - 4;
-  if (top + tooltip.offsetHeight > window.innerHeight) top = window.innerHeight - tooltip.offsetHeight - 4;
+        // evita que o tooltip saia da tela
+        if (left + tooltip.offsetWidth > window.innerWidth) left = window.innerWidth - tooltip.offsetWidth - 4;
+        if (top + tooltip.offsetHeight > window.innerHeight) top = window.innerHeight - tooltip.offsetHeight - 4;
 
-  tooltip.style.left = left + "px";
-  tooltip.style.top = top + "px";
+        tooltip.style.left = left + "px";
+        tooltip.style.top = top + "px";
       });
-      horarioDiv.addEventListener("mouseleave", () => tooltip.style.opacity = 0);
+
+      horarioDiv.addEventListener("mouseleave", () => {
+        tooltip.style.opacity = 0;
+      });
 
       card.appendChild(horarioDiv);
     });
