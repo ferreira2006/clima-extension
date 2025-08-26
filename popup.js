@@ -163,19 +163,18 @@ function renderCards(diasOrdenados, diasMap) {
 
       // Tooltip dentro do horário
       const tooltip = document.createElement("div");
-      tooltip.className = "tooltip";
-      tooltip.innerHTML = `Sensação: ${p.feels_like}°C<br>Umidade: ${p.humidity}%<br>Chuva: ${p.pop}%`;
-      horarioDiv.appendChild(tooltip);
+tooltip.className = "tooltip";
+horarioDiv.appendChild(tooltip);
 
-      horarioDiv.addEventListener("mousemove", e => {
-        tooltip.style.opacity = 1;
-        tooltip.style.left = e.offsetX + 12 + "px";
-        tooltip.style.top = e.offsetY + 12 + "px";
-      });
+horarioDiv.addEventListener("mousemove", e => {
+  tooltip.style.opacity = 1;
+  tooltip.style.left = e.offsetX + 12 + "px";
+  tooltip.style.top = e.offsetY + 12 + "px";
+});
 
-      horarioDiv.addEventListener("mouseleave", () => {
-        tooltip.style.opacity = 0;
-      });
+horarioDiv.addEventListener("mouseleave", () => {
+  tooltip.style.opacity = 0;
+});
 
       card.appendChild(horarioDiv);
     });
